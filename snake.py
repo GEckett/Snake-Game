@@ -11,6 +11,7 @@ class Snake:
             segment_1.penup()
             segment_1.goto(x=(0 - (segment * 20)), y=0)
             self.all_segments.append(segment_1)
+        self.head = self.all_segments[0]
 
     def move(self):
         """Keeps all segments of the snake moving together"""
@@ -22,14 +23,14 @@ class Snake:
 
 
     def up(self):
-        self.all_segments[0].setheading(90)
+        self.head.setheading(90)
 
     def down(self):
-        self.all_segments[0].setheading(270)
+        self.head.setheading(270)
 
     def left(self):
-        self.all_segments[0].setheading(180)
+        self.head.setheading(180)
 
 
     def right(self):
-        self.all_segments[0].setheading(0)
+        self.head.setheading(0)
