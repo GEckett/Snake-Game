@@ -3,6 +3,8 @@ UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+STARTING_POSITIONS = [(0, 0), (0, -20), (0, -40)]
+
 
 class Snake:
     """Models the Snake that moves on screen"""
@@ -10,13 +12,23 @@ class Snake:
     def __init__(self):
         """Generates the initial 3 segments of the snake"""
         self.all_segments = []
-        for segment in range(0, 3):
-            segment_1 = Turtle(shape="square")
-            segment_1.color("white")
-            segment_1.penup()
-            segment_1.goto(x=(0 - (segment * 20)), y=0)
-            self.all_segments.append(segment_1)
+        self.create_snake()
         self.head = self.all_segments[0]
+
+    def create_snake(self):
+        for position in STARTING_POSITIONS:
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        segment_1 = Turtle(shape="square")
+        segment_1.color("white")
+        segment_1.penup()
+        segment_1.goto(position)
+        self.all_segments.append(segment_1)
+
+    def extend(self):
+        self.add_segment(self.all_segments[-1].position())
+
 
     def move(self):
         """Keeps all segments of the snake moving together"""
